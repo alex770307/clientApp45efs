@@ -16,7 +16,7 @@ public class AddClientService {
       Client clientForAdd = new Client(request.getName(), request.getEmail(), request.getPassword());
         Client clientAfterAdd = repository.add(clientForAdd);
         return new ResponseClientDto(
-                clientForAdd.getIdClient(),
+                clientAfterAdd.getIdClient(),
                 clientAfterAdd.getName(),
                 clientAfterAdd.getEmail());
     }
