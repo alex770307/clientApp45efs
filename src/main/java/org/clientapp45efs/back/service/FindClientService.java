@@ -1,13 +1,14 @@
-package org.clientapp45efs.service;
+package org.clientapp45efs.back.service;
 
-import org.clientapp45efs.dto.ResponseClientDto;
-import org.clientapp45efs.entity.Client;
-import org.clientapp45efs.repository.ClientRepository;
+import org.clientapp45efs.back.dto.ResponseClientDto;
+import org.clientapp45efs.back.entity.Client;
+import org.clientapp45efs.back.repository.ClientRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class FindClientService {
 
     private ClientRepository repository;
@@ -15,27 +16,36 @@ public class FindClientService {
     public FindClientService(ClientRepository repository) {
         this.repository = repository;
     }
-    public List<ResponseClientDto> findAll() {
+
+    public List<ResponseClientDto> findAll(){
         List<Client> allClients = repository.findAll();
 
         // вариант "классический с циклами"
+
 //        List<ResponseClientDto> responseDtos = new ArrayList<>();
+//
 //        for (Client currentClient : allClients){
+//
 //            ResponseClientDto currentDto = new ResponseClientDto(
 //                    currentClient.getIdClient(),
 //                    currentClient.getName(),
 //                    currentClient.getEmail()
 //            );
+//
 //            responseDtos.add(currentDto);
 //        }
+//
 //        return responseDtos;
+
         return allClients.stream()
-                .map(currentClient -> new ResponseClientDto(
-                        currentClient.getIdClient(),
-                        currentClient.getName(),
-                        currentClient.getEmail()
-                ))
+                .map(currentClient ->
+                        new ResponseClientDto(
+                                currentClient.getIdClient(),
+                                currentClient.getName(),
+                                currentClient.getEmail()
+                        ))
                 .toList();
+
     }
 
     public Optional<ResponseClientDto> findById(Integer idClient){
@@ -56,6 +66,7 @@ public class FindClientService {
 
     public List<ResponseClientDto> findByName(String name){
         List<Client> foundedClients = repository.findByName(name);
+
         return foundedClients.stream()
                 .map(client -> new ResponseClientDto(
                         client.getIdClient(),
@@ -64,6 +75,7 @@ public class FindClientService {
                 ))
                 .toList();
     }
+
 
 
     // для ДЗ - сделать метод findByEmail

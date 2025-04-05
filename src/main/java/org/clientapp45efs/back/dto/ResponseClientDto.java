@@ -1,4 +1,4 @@
-package org.clientapp45efs.dto;
+package org.clientapp45efs.back.dto;
 
 public class ResponseClientDto {
 

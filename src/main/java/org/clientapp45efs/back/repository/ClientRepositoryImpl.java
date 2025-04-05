@@ -1,10 +1,11 @@
-package org.clientapp45efs.repository;
+package org.clientapp45efs.back.repository;
 
-import org.clientapp45efs.entity.Client;
+import org.clientapp45efs.back.entity.Client;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
+@Component
 public class ClientRepositoryImpl implements ClientRepository {
 
     private Map<Integer, Client> database;
@@ -34,7 +35,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> findById(int idClient) {
+    public Optional<Client> findById(Integer idClient) {
         return Optional.ofNullable(database.get(idClient));
     }
 
@@ -53,7 +54,7 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public Optional<Client> deleteById(int idClient) {
+    public Optional<Client> deleteById(Integer idClient) {
         return Optional.ofNullable(database.remove(idClient));
     }
 

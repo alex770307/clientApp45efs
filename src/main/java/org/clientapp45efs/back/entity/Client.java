@@ -1,4 +1,4 @@
-package org.clientapp45efs.entity;
+package org.clientapp45efs.back.entity;
 
 public class Client {
     private int idClient;
